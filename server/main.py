@@ -444,6 +444,69 @@ def get_monthly_trends(
     result.sort(key=lambda x: x['month'])
     return result
 
+# User-created tasks for the "My Tasks" modal, kept in memory like restock orders.
+# IDs are strings ("TASK-0001") so they never collide with the numeric IDs of the
+# mock tasks the frontend merges in from useAuth.
+tasks: list = []
+tasks_lock = threading.Lock()
+task_counter = 0
+
+class Task(BaseModel):
+    id: str
+    title: str
+    priority: str
+    dueDate: str
+    status: str
+
+class CreateTaskRequest(BaseModel):
+    title: str = Field(min_length=1, max_length=200)
+    priority: str = Field(pattern='^(high|medium|low)$')
+    dueDate: str = Field(pattern=r'^\d{4}-\d{2}-\d{2}$')
+
+@app.get("/api/tasks", response_model=List[Task])
+def get_tasks():
+    """Get user-created tasks, newest first"""
+    return tasks
+
+@app.post("/api/tasks", response_model=Task, status_code=201)
+def create_task(request: CreateTaskRequest):
+    """Create a task"""
+    global task_counter
+    title = request.title.strip()
+    if not title:
+        raise HTTPException(status_code=422, detail="Title must not be blank")
+    with tasks_lock:
+        task_counter += 1
+        task = {
+            'id': f"TASK-{task_counter:04d}",
+            'title': title,
+            'priority': request.priority,
+            'dueDate': request.dueDate,
+            'status': 'pending'
+        }
+        tasks.insert(0, task)
+    return task
+
+@app.patch("/api/tasks/{task_id}", response_model=Task)
+def toggle_task(task_id: str):
+    """Toggle a task between pending and completed"""
+    with tasks_lock:
+        task = next((t for t in tasks if t['id'] == task_id), None)
+        if not task:
+            raise HTTPException(status_code=404, detail="Task not found")
+        task['status'] = 'completed' if task['status'] == 'pending' else 'pending'
+        return task
+
+@app.delete("/api/tasks/{task_id}")
+def delete_task(task_id: str):
+    """Delete a task"""
+    with tasks_lock:
+        index = next((i for i, t in enumerate(tasks) if t['id'] == task_id), None)
+        if index is None:
+            raise HTTPException(status_code=404, detail="Task not found")
+        tasks.pop(index)
+    return {"message": "Task deleted", "id": task_id}
+
 @app.get("/api/restocking/recommendations", response_model=RestockRecommendationResponse)
 def get_restocking_recommendations(budget: float = Query(5000, ge=0, le=1_000_000)):
     """Get restock recommendations from the demand forecast that fit within the budget"""
