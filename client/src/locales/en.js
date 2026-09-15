@@ -6,6 +6,8 @@ export default {
     orders: 'Orders',
     finance: 'Finance',
     demandForecast: 'Demand Forecast',
+    restocking: 'Restocking',
+    reports: 'Reports',
     companyName: 'Catalyst Components',
     subtitle: 'Inventory Management System'
   },
@@ -80,6 +82,8 @@ export default {
     skus: 'SKUs',
     searchPlaceholder: 'Search by item name...',
     clearSearch: 'Clear search',
+    exportCsv: 'Export CSV',
+    exportCsvTitle: 'Download the rows currently shown as a CSV file',
     totalItems: 'Total Items',
     totalValue: 'Total Value',
     lowStockItems: 'Low Stock Items',
@@ -126,6 +130,23 @@ export default {
       status: 'Status',
       expectedDelivery: 'Expected Delivery',
       actualDelivery: 'Actual Delivery'
+    },
+    submitted: {
+      title: 'Submitted Orders',
+      description: 'Restocking orders placed from the Restocking page',
+      empty: 'No restocking orders submitted yet.',
+      goToRestocking: 'Plan a restock',
+      loadError: 'Failed to load submitted orders',
+      leadTimeDays: '{days} days',
+      table: {
+        orderId: 'Order ID',
+        submittedDate: 'Submitted',
+        items: 'Items',
+        total: 'Total',
+        leadTime: 'Lead Time',
+        expectedDelivery: 'Expected Delivery',
+        status: 'Status'
+      }
     }
   },
 
@@ -188,6 +209,40 @@ export default {
     }
   },
 
+  // Reports
+  reports: {
+    title: 'Performance Reports',
+    description: 'View quarterly performance metrics and monthly trends',
+    loading: 'Loading reports...',
+    loadError: 'Failed to load reports',
+    noData: 'No report data for the selected filters',
+    quarterly: {
+      title: 'Quarterly Performance',
+      quarter: 'Quarter',
+      totalOrders: 'Total Orders',
+      totalRevenue: 'Total Revenue',
+      avgOrderValue: 'Avg Order Value',
+      fulfillmentRate: 'Fulfillment Rate'
+    },
+    monthlyTrend: {
+      title: 'Monthly Revenue Trend'
+    },
+    monthOverMonth: {
+      title: 'Month-over-Month Analysis',
+      month: 'Month',
+      orders: 'Orders',
+      revenue: 'Revenue',
+      change: 'Change',
+      growthRate: 'Growth Rate'
+    },
+    summary: {
+      totalRevenue: 'Total Revenue',
+      avgMonthlyRevenue: 'Avg Monthly Revenue',
+      totalOrders: 'Total Orders',
+      bestQuarter: 'Best Performing Quarter'
+    }
+  },
+
   // Filters
   filters: {
     timePeriod: 'Time Period',
@@ -198,8 +253,46 @@ export default {
     allMonths: 'All Months'
   },
 
+  // Restocking
+  restocking: {
+    title: 'Restocking',
+    description: 'Plan restock orders from the demand forecast within your budget',
+    filtersNotApplied: 'Global filters do not apply to demand forecasts.',
+    budget: 'Available Budget',
+    budgetInput: 'Budget amount',
+    stats: {
+      totalCost: 'Total Cost',
+      remainingBudget: 'Remaining Budget',
+      itemsCount: 'Items to Restock',
+      maxLeadTime: 'Max Lead Time'
+    },
+    recommendations: 'Recommended Items',
+    table: {
+      sku: 'SKU',
+      item: 'Item',
+      trend: 'Trend',
+      current: 'Current',
+      forecast: 'Forecast',
+      gap: 'Gap',
+      quantity: 'Recommended Qty',
+      unitCost: 'Unit Cost',
+      lineTotal: 'Line Total',
+      leadTime: 'Lead Time'
+    },
+    partial: 'Partial',
+    days: '{days} days',
+    placeOrder: 'Place Order',
+    placing: 'Placing order...',
+    success: 'Order {id} submitted. Expected delivery {date}.',
+    viewOrders: 'View in Orders',
+    empty: 'Budget too small to restock any item.',
+    loadError: 'Failed to load restock recommendations',
+    submitError: 'Failed to place the restocking order'
+  },
+
   // Statuses
   status: {
+    submitted: 'Submitted',
     delivered: 'Delivered',
     shipped: 'Shipped',
     processing: 'Processing',
@@ -324,5 +417,17 @@ export default {
     filter: 'Filter',
     export: 'Export',
     items: 'items'
+  },
+
+  // Chat Widget
+  chat: {
+    title: 'Assistant',
+    greeting: 'Hi! How can we help you today?',
+    placeholder: 'Type your message...',
+    send: 'Send',
+    connecting: "We're connecting you with an assistant.",
+    open: 'Open chat',
+    close: 'Close chat',
+    typing: 'Assistant is typing'
   }
 }
