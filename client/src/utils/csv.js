@@ -29,8 +29,15 @@ export function downloadCsv(filename, csv) {
   const link = document.createElement('a')
   link.href = url
   link.download = filename
+  link.rel = 'noopener'
+  link.style.display = 'none'
   document.body.appendChild(link)
   link.click()
-  document.body.removeChild(link)
-  URL.revokeObjectURL(url)
+  // Browsers start the download asynchronously; revoking the blob URL right
+  // after click() can cancel it or save an empty/unreadable file (seen in
+  // Brave/Firefox). Give the download time to begin before cleaning up.
+  setTimeout(() => {
+    document.body.removeChild(link)
+    URL.revokeObjectURL(url)
+  }, 1000)
 }
