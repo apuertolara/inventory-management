@@ -6,6 +6,7 @@ export default {
     orders: '注文',
     finance: '財務',
     demandForecast: '需要予測',
+    restocking: '在庫補充',
     companyName: '触媒コンポーネンツ',
     subtitle: '在庫管理システム'
   },
@@ -126,6 +127,23 @@ export default {
       status: 'ステータス',
       expectedDelivery: '予定配達日',
       actualDelivery: '実際の配達日'
+    },
+    submitted: {
+      title: '送信済み補充発注',
+      description: '在庫補充ページから送信された発注',
+      empty: '送信済みの補充発注はありません。',
+      goToRestocking: '補充を計画する',
+      loadError: '送信済み発注の読み込みに失敗しました',
+      leadTimeDays: '{days}日',
+      table: {
+        orderId: '発注ID',
+        submittedDate: '送信日',
+        items: '品目',
+        total: '合計',
+        leadTime: 'リードタイム',
+        expectedDelivery: '納品予定日',
+        status: 'ステータス'
+      }
     }
   },
 
@@ -198,8 +216,46 @@ export default {
     allMonths: 'すべての月'
   },
 
+  // Restocking
+  restocking: {
+    title: '在庫補充',
+    description: '需要予測に基づき、予算内で補充発注を計画します',
+    filtersNotApplied: 'グローバルフィルターは需要予測には適用されません。',
+    budget: '利用可能予算',
+    budgetInput: '予算額',
+    stats: {
+      totalCost: '合計費用',
+      remainingBudget: '残り予算',
+      itemsCount: '補充品目数',
+      maxLeadTime: '最大リードタイム'
+    },
+    recommendations: '推奨品目',
+    table: {
+      sku: 'SKU',
+      item: '品目',
+      trend: '傾向',
+      current: '現在',
+      forecast: '予測',
+      gap: '差分',
+      quantity: '推奨数量',
+      unitCost: '単価',
+      lineTotal: '小計',
+      leadTime: 'リードタイム'
+    },
+    partial: '一部',
+    days: '{days}日',
+    placeOrder: '発注する',
+    placing: '発注中...',
+    success: '発注 {id} を送信しました。納品予定日：{date}',
+    viewOrders: '注文一覧で確認',
+    empty: '予算が不足しているため、補充できる品目がありません。',
+    loadError: '補充推奨の読み込みに失敗しました',
+    submitError: '補充発注の送信に失敗しました'
+  },
+
   // Statuses
   status: {
+    submitted: '送信済み',
     delivered: '配達済み',
     shipped: '出荷済み',
     processing: '処理中',

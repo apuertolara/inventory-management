@@ -6,6 +6,7 @@ export default {
     orders: 'Orders',
     finance: 'Finance',
     demandForecast: 'Demand Forecast',
+    restocking: 'Restocking',
     companyName: 'Catalyst Components',
     subtitle: 'Inventory Management System'
   },
@@ -126,6 +127,23 @@ export default {
       status: 'Status',
       expectedDelivery: 'Expected Delivery',
       actualDelivery: 'Actual Delivery'
+    },
+    submitted: {
+      title: 'Submitted Orders',
+      description: 'Restocking orders placed from the Restocking page',
+      empty: 'No restocking orders submitted yet.',
+      goToRestocking: 'Plan a restock',
+      loadError: 'Failed to load submitted orders',
+      leadTimeDays: '{days} days',
+      table: {
+        orderId: 'Order ID',
+        submittedDate: 'Submitted',
+        items: 'Items',
+        total: 'Total',
+        leadTime: 'Lead Time',
+        expectedDelivery: 'Expected Delivery',
+        status: 'Status'
+      }
     }
   },
 
@@ -198,8 +216,46 @@ export default {
     allMonths: 'All Months'
   },
 
+  // Restocking
+  restocking: {
+    title: 'Restocking',
+    description: 'Plan restock orders from the demand forecast within your budget',
+    filtersNotApplied: 'Global filters do not apply to demand forecasts.',
+    budget: 'Available Budget',
+    budgetInput: 'Budget amount',
+    stats: {
+      totalCost: 'Total Cost',
+      remainingBudget: 'Remaining Budget',
+      itemsCount: 'Items to Restock',
+      maxLeadTime: 'Max Lead Time'
+    },
+    recommendations: 'Recommended Items',
+    table: {
+      sku: 'SKU',
+      item: 'Item',
+      trend: 'Trend',
+      current: 'Current',
+      forecast: 'Forecast',
+      gap: 'Gap',
+      quantity: 'Recommended Qty',
+      unitCost: 'Unit Cost',
+      lineTotal: 'Line Total',
+      leadTime: 'Lead Time'
+    },
+    partial: 'Partial',
+    days: '{days} days',
+    placeOrder: 'Place Order',
+    placing: 'Placing order...',
+    success: 'Order {id} submitted. Expected delivery {date}.',
+    viewOrders: 'View in Orders',
+    empty: 'Budget too small to restock any item.',
+    loadError: 'Failed to load restock recommendations',
+    submitError: 'Failed to place the restocking order'
+  },
+
   // Statuses
   status: {
+    submitted: 'Submitted',
     delivered: 'Delivered',
     shipped: 'Shipped',
     processing: 'Processing',
