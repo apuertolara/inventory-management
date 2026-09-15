@@ -28,10 +28,7 @@
           </router-link>
         </nav>
         <LanguageSwitcher />
-        <ProfileMenu
-          @show-profile-details="showProfileDetails = true"
-          @show-tasks="showTasks = true"
-        />
+        <ProfileMenu @show-profile-details="showProfileDetails = true" @show-tasks="showTasks = true" />
       </div>
     </header>
     <FilterBar />
@@ -39,19 +36,11 @@
       <router-view />
     </main>
 
-    <ProfileDetailsModal
-      :is-open="showProfileDetails"
-      @close="showProfileDetails = false"
-    />
+    <ProfileDetailsModal :is-open="showProfileDetails" @close="showProfileDetails = false" />
 
-    <TasksModal
-      :is-open="showTasks"
-      :tasks="tasks"
-      @close="showTasks = false"
-      @add-task="addTask"
-      @delete-task="deleteTask"
-      @toggle-task="toggleTask"
-    />
+    <TasksModal :is-open="showTasks" :tasks="tasks" @close="showTasks = false" @add-task="addTask" @delete-task="deleteTask" @toggle-task="toggleTask" />
+
+    <ChatWidget />
   </div>
 </template>
 
@@ -65,6 +54,7 @@ import ProfileMenu from './components/ProfileMenu.vue'
 import ProfileDetailsModal from './components/ProfileDetailsModal.vue'
 import TasksModal from './components/TasksModal.vue'
 import LanguageSwitcher from './components/LanguageSwitcher.vue'
+import ChatWidget from './components/ChatWidget.vue'
 
 export default {
   name: 'App',
@@ -73,7 +63,8 @@ export default {
     ProfileMenu,
     ProfileDetailsModal,
     TasksModal,
-    LanguageSwitcher
+    LanguageSwitcher,
+    ChatWidget
   },
   setup() {
     const { currentUser } = useAuth()
@@ -95,7 +86,7 @@ export default {
       }
     }
 
-    const addTask = async (taskData) => {
+    const addTask = async taskData => {
       try {
         const newTask = await api.createTask(taskData)
         // Add new task to the beginning of the array
@@ -105,7 +96,7 @@ export default {
       }
     }
 
-    const deleteTask = async (taskId) => {
+    const deleteTask = async taskId => {
       try {
         // Check if it's a mock task (from currentUser)
         const isMockTask = currentUser.value.tasks.some(t => t.id === taskId)
@@ -126,7 +117,7 @@ export default {
       }
     }
 
-    const toggleTask = async (taskId) => {
+    const toggleTask = async taskId => {
       try {
         // Check if it's a mock task (from currentUser)
         const mockTask = currentUser.value.tasks.find(t => t.id === taskId)
@@ -170,7 +161,16 @@ export default {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    sans-serif;
   background: #f8fafc;
   color: #1e293b;
   -webkit-font-smoothing: antialiased;

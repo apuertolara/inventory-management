@@ -419,6 +419,18 @@ export default {
     items: '件'
   },
 
+  // Chat Widget
+  chat: {
+    title: 'アシスタント',
+    greeting: 'こんにちは！どのようなご用件でしょうか？',
+    placeholder: 'メッセージを入力...',
+    send: '送信',
+    connecting: '担当者におつなぎしています。',
+    open: 'チャットを開く',
+    close: 'チャットを閉じる',
+    typing: 'アシスタントが入力中'
+  },
+
   // Product Names
   productNames: {
     'Single Layer PCB Assembly': '単層PCB組立',

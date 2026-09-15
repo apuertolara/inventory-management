@@ -417,5 +417,17 @@ export default {
     filter: 'Filter',
     export: 'Export',
     items: 'items'
+  },
+
+  // Chat Widget
+  chat: {
+    title: 'Assistant',
+    greeting: 'Hi! How can we help you today?',
+    placeholder: 'Type your message...',
+    send: 'Send',
+    connecting: "We're connecting you with an assistant.",
+    open: 'Open chat',
+    close: 'Close chat',
+    typing: 'Assistant is typing'
   }
 }
